@@ -31,6 +31,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <dayon.mainClass>mpo.dayon.assisted.AssistedRunner</dayon.mainClass>
         <xz.version>1.9</xz.version>
+        <jna-platform.version>5.10.0</jna-platform.version>
         <junit.jupiter.version>5.8.2</junit.jupiter.version>
         <mockito.core.version>4.1.0</mockito.core.version>
         <maven-surefire-plugin.version>2.22.0</maven-surefire-plugin.version>
@@ -40,7 +41,12 @@
         <dependency>
             <groupId>org.tukaani</groupId>
             <artifactId>xz</artifactId>
-            <version>1.9</version>
+            <version>${xz.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.java.dev.jna</groupId>
+            <artifactId>jna-platform</artifactId>
+            <version>${jna-platform.version}</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -364,6 +370,12 @@
                                     <filters>
                                         <filter>
                                             <artifact>org.tukaani:xz</artifact>
+                                            <excludes>
+                                                <exclude>META-INF/**</exclude>
+                                            </excludes>
+                                        </filter>
+                                        <filter>
+                                            <artifact>net.java.dev.jna:jna-platform</artifact>
                                             <excludes>
                                                 <exclude>META-INF/**</exclude>
                                             </excludes>
