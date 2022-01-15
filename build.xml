@@ -56,7 +56,7 @@
 		</copy>
 	</target>
 
-	<target name="build" depends="compile" description="Build the jar">
+	<target name="build" depends="compile-assisted" description="Build the jar">
 		<jar destfile="${dir.build}/dayon.jar">
 			<zipgroupfileset dir="${dir.binfile}/lib" excludes="xz-1.9.jar,jna-5.10.0.jar,jna-platform-5.10.0.jar"/>
 			<zipfileset src="${dir.binfile}/lib/xz-1.9.jar" excludes="META-INF/**"/>
