@@ -8,7 +8,7 @@
     <url>https://github.com/retgal/dayon</url>
     <groupId>mpo.dayon</groupId>
     <artifactId>fensterkitt</artifactId>
-    <version>11.0.2</version>
+    <version>11.0.3</version>
     <description>cross platform remote desktop solution</description>
     <developers>
         <developer>
@@ -31,6 +31,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <dayon.mainClass>mpo.dayon.assisted.AssistedRunner</dayon.mainClass>
         <xz.version>1.9</xz.version>
+        <jna-platform.version>5.10.0</jna-platform.version>
         <junit.jupiter.version>5.8.2</junit.jupiter.version>
         <mockito.core.version>4.1.0</mockito.core.version>
         <maven-surefire-plugin.version>2.22.0</maven-surefire-plugin.version>
@@ -40,7 +41,12 @@
         <dependency>
             <groupId>org.tukaani</groupId>
             <artifactId>xz</artifactId>
-            <version>1.9</version>
+            <version>${xz.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.java.dev.jna</groupId>
+            <artifactId>jna-platform</artifactId>
+            <version>${jna-platform.version}</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -356,12 +362,46 @@
                                     <goal>shade</goal>
                                 </goals>
                                 <configuration>
-                                    <minimizeJar>true</minimizeJar>
+                                    <minimizeJar>false</minimizeJar>
                                     <filters>
                                         <filter>
                                             <artifact>org.tukaani:xz</artifact>
                                             <excludes>
                                                 <exclude>META-INF/**</exclude>
+                                            </excludes>
+                                        </filter>
+                                        <filter>
+                                            <artifact>net.java.dev.jna:jna</artifact>
+                                            <excludes>
+                                                <exclude>META-INF/**</exclude>
+                                                <exclude>com/sun/jna/aix*/**</exclude>
+                                                <exclude>com/sun/jna/darwin*/**</exclude>
+                                                <exclude>com/sun/jna/freebsd*/**</exclude>
+                                                <exclude>com/sun/jna/linux*/**</exclude>
+                                                <exclude>com/sun/jna/openbsd*/**</exclude>
+                                                <exclude>com/sun/jna/sunos*/**</exclude>
+                                            </excludes>
+                                        </filter>
+                                        <filter>
+                                            <artifact>net.java.dev.jna:jna-platform</artifact>
+                                            <excludes>
+                                                <exclude>META-INF/**</exclude>
+                                                <exclude>com/sun/jna/platform/mac/**</exclude>
+                                                <exclude>com/sun/jna/platform/linux/**</exclude>
+                                                <exclude>com/sun/jna/platform/unix/**</exclude>
+                                                <exclude>com/sun/jna/platform/*$X11*</exclude>
+                                                <exclude>com/sun/jna/platform/*$Mac*</exclude>
+                                                <exclude>com/sun/jna/platform/Window*</exclude>
+                                                <exclude>com/sun/jna/platform/win32/COM/**</exclude>
+                                                <exclude>com/sun/jna/platform/win32/Crypt*</exclude>
+                                                <exclude>com/sun/jna/platform/win32/D*</exclude>
+                                                <exclude>com/sun/jna/platform/win32/G*</exclude>
+                                                <exclude>com/sun/jna/platform/win32/Net*</exclude>
+                                                <exclude>com/sun/jna/platform/win32/HighLevel*</exclude>
+                                                <exclude>com/sun/jna/platform/win32/IPHlp*</exclude>
+                                                <exclude>com/sun/jna/platform/win32/LM*</exclude>
+                                                <exclude>com/sun/jna/platform/win32/LowLevel*</exclude>
+                                                <exclude>com/sun/jna/platform/win32/O*</exclude>
                                             </excludes>
                                         </filter>
                                     </filters>

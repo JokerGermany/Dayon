@@ -44,9 +44,24 @@
 		</copy>
 	</target>
 
-	<target name="build" depends="compile" description="Build the jar">
+	<target name="compile-assisted" depends="init" description="Compile the sources">
+		<javac debug="true" includeantruntime="false" srcdir="${dir.src}" destdir="${dir.bin}" classpathref="project.classpath">
+			<exclude name="**/assistant/" />
+		</javac>
+		<copy todir="${dir.bin}">
+			<fileset dir="${dir.src}">
+				<exclude name="**/*.java"/>
+			</fileset>
+			<fileset dir="${dir.jares}"/>
+		</copy>
+	</target>
+
+	<target name="build" depends="compile-assisted" description="Build the jar">
 		<jar destfile="${dir.build}/dayon.jar">
-			<zipgroupfileset dir="${dir.binfile}/lib" includes="xz-1.9.jar"/>
+			<zipgroupfileset dir="${dir.binfile}/lib" excludes="xz-1.9.jar,jna-5.10.0.jar,jna-platform-5.10.0.jar"/>
+			<zipfileset src="${dir.binfile}/lib/xz-1.9.jar" excludes="META-INF/**"/>
+			<zipfileset src="${dir.binfile}/lib/jna-5.10.0.jar" excludes="META-INF/**,com/sun/jna/aix*/**,com/sun/jna/darwin*/**,com/sun/jna/freebsd*/**,com/sun/jna/linux*/**,com/sun/jna/openbsd*/**,com/sun/jna/sunos*/**"/>
+			<zipfileset src="${dir.binfile}/lib/jna-platform-5.10.0.jar" excludes="META-INF/**,com/sun/jna/platform/mac/**,com/sun/jna/platform/linux/**,com/sun/jna/platform/unix/**,com/sun/jna/platform/*$X11*,com/sun/jna/platform/*$Mac*,com/sun/jna/platform/Window*,com/sun/jna/platform/win32/COM/**,com/sun/jna/platform/win32/Crypt*,com/sun/jna/platform/win32/D*,com/sun/jna/platform/win32/G*,com/sun/jna/platform/win32/Net*,com/sun/jna/platform/win32/HighLevel*,com/sun/jna/platform/win32/IPHlp*,com/sun/jna/platform/win32/LM*,com/sun/jna/platform/win32/LowLevel*,com/sun/jna/platform/win32/O*"/>
 			<manifest>
 				<attribute name="Application-Name" value="Fensterkitt"/>
 				<attribute name="Implementation-Version" value="${version}"/>
