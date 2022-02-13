@@ -13,7 +13,7 @@
 	<property name="main.class" value="mpo.dayon.assisted.AssistedRunner"/>
 	<property name="ant.build.javac.source" value="1.8"/>
 	<property name="ant.build.javac.target" value="1.8"/>
-	<property name="version" value="11.0.2"/>
+	<property name="version" value="11.0.3"/>
 
 	<path id="project.classpath">
 		<fileset dir="${dir.lib}">
@@ -117,7 +117,7 @@
 	</target>
 
 	<target name="tar" description="Creates a gzipped tar archive of the distribution for Linux">
-		<copy todir="${dir.dist}/tar/dayon">
+		<copy todir="${dir.dist}/tar/fensterkitt">
 			<fileset dir="${dir.dist}">
 				<exclude name="jre/"/>
 				<exclude name="license/azul_zulu_license.txt"/>
