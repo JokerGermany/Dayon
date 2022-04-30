@@ -2,7 +2,7 @@ Thank you for downloading Fensterkitt Support App
 
 Contents:
 
-  .            Startup scripts, configuration files and the dayon.jar
+  .            Program launchers, icon and this readme
   license/     Dayon! & bundled software licenses.
   jre/         Bundled JRE (optional).
   
@@ -17,16 +17,6 @@ Running Fensterkitt Support App
   On the assisted machine (acting as a client) click the Fensterkitt link or run the dayon_assisted script.
   Enter the token provided by of the assistant.
   
-
-Linux:
-
-  If you want to install from the tar archive, then you may need to chmod +x setup.sh before executing it.
-
-
-OSX/macOS:
-
-  You might need to chmod +x the scripts dayon, dayon_assistant and dayon_assisted.
-
 
 Project:
 
