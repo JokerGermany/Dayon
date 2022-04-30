@@ -186,25 +186,6 @@ public class Assisted implements Subscriber, ClipboardOwner {
         return multiScreen;
     }
 
-    private Action createToggleMultiScreenAction() {
-        final Action multiScreen = new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent ev) {
-            initNewCaptureEngine(!shareAllScreens.get());
-            shareAllScreens.set(!shareAllScreens.get());
-            frame.repaint();
-            if (networkEngine != null) {
-                final Dimension screenSize = ScreenUtilities.getSharedScreenSize().getSize();
-                networkEngine.sendResizeScreen(screenSize.width, screenSize.height);
-            }
-            }
-        };
-        multiScreen.putValue(Action.NAME, "shareAllScreens");
-        multiScreen.putValue(Action.SHORT_DESCRIPTION, translate("share.all.screens"));
-        multiScreen.putValue(Action.SMALL_ICON, getOrCreateIcon(ImageNames.LNF));
-        return multiScreen;
-    }
-
     boolean start() {
         // triggers network settings dialogue
         return start(null, null, false);
